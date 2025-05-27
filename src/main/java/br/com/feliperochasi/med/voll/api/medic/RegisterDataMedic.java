@@ -6,5 +6,6 @@ public record RegisterDataMedic(String nome,
                                 String email,
                                 String crm,
                                 Specialised especialidade,
+                                String telefone,
                                 DataAddress endereco) {
 }

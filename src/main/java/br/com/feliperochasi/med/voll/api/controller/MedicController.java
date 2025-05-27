@@ -4,6 +4,7 @@ import br.com.feliperochasi.med.voll.api.medic.Medic;
 import br.com.feliperochasi.med.voll.api.medic.MedicRepository;
 import br.com.feliperochasi.med.voll.api.medic.RegisterDataMedic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ public class MedicController {
     private MedicRepository repository;
 
     @PostMapping
+    @Transactional
     public void register(@RequestBody RegisterDataMedic dataMedic) {
         repository.save(new Medic(dataMedic));
     }
