@@ -18,4 +18,14 @@ public class Address {
     private String complement;
     private String city;
     private String uf;
+
+    public Address(DataAddress data) {
+        this.address = data.logradouro();
+        this.neighborhood = data.bairro();
+        this.zipcode = data.cep();
+        this.number = data.numero();
+        this.city = data.cidade();
+        this.uf = data.uf();
+        this.complement = data.complemento();
+    }
 }
