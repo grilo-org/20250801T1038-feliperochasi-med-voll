@@ -27,6 +27,13 @@ public class PatientController {
 
     @GetMapping
     public Page<ListDataPatient> listPatient(@PageableDefault(size = 10, sort = {"name"}) Pageable p) {
-        return repository.findAll(p).map(ListDataPatient::new);
+        return repository.findAllByActiveTrue(p).map(ListDataPatient::new);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void delete(@PathVariable Long id) {
+        var patient = repository.getReferenceById(id);
+        patient.exclude();
     }
 }

@@ -27,6 +27,7 @@ public class Patient {
     @Embedded
     private Address address;
 
+    private boolean active;
 
     public Patient(@Valid RegisterDataPatient dataPatient) {
         this.name = dataPatient.nome();
@@ -34,5 +35,10 @@ public class Patient {
         this.phone = dataPatient.telefone();
         this.cpf = dataPatient.cpf();
         this.address = new Address(dataPatient.endereco());
+        this.active = true;
+    }
+
+    public void exclude() {
+        this.active = false;
     }
 }
