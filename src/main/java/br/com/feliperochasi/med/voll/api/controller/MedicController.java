@@ -3,6 +3,7 @@ package br.com.feliperochasi.med.voll.api.controller;
 import br.com.feliperochasi.med.voll.api.medic.Medic;
 import br.com.feliperochasi.med.voll.api.medic.MedicRepository;
 import br.com.feliperochasi.med.voll.api.medic.RegisterDataMedic;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class MedicController {
 
     @PostMapping
     @Transactional
-    public void register(@RequestBody RegisterDataMedic dataMedic) {
+    public void register(@RequestBody @Valid RegisterDataMedic dataMedic) {
         repository.save(new Medic(dataMedic));
     }
 }
