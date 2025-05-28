@@ -1,9 +1,6 @@
 package br.com.feliperochasi.med.voll.api.controller;
 
-import br.com.feliperochasi.med.voll.api.medic.ListDataMedic;
-import br.com.feliperochasi.med.voll.api.medic.Medic;
-import br.com.feliperochasi.med.voll.api.medic.MedicRepository;
-import br.com.feliperochasi.med.voll.api.medic.RegisterDataMedic;
+import br.com.feliperochasi.med.voll.api.medic.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,5 +25,12 @@ public class MedicController {
     @GetMapping
     public Page<ListDataMedic> listMedics(@PageableDefault(size = 10, sort = {"name"}) Pageable p) {
         return repository.findAll(p).map(ListDataMedic::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void update(@RequestBody @Valid UpdateDataMedic dataMedic) {
+        var medic = repository.getReferenceById(dataMedic.id());
+        medic.update(dataMedic);
     }
 }

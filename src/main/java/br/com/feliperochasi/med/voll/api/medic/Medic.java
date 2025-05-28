@@ -36,4 +36,19 @@ public class Medic {
         this.address = new Address(data.endereco());
         this.phone = data.telefone();
     }
+
+    public void update(UpdateDataMedic dataMedic) {
+        if (dataMedic.nome() != null) {
+            this.name = dataMedic.nome();
+        }
+
+        if(dataMedic.telefone() != null) {
+            this.phone = dataMedic.telefone();
+        }
+
+        if(dataMedic.endereco() != null) {
+            this.address.update(dataMedic.endereco());
+        }
+
+    }
 }
