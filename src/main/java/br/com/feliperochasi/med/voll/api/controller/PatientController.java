@@ -1,6 +1,6 @@
 package br.com.feliperochasi.med.voll.api.controller;
 
-import br.com.feliperochasi.med.voll.api.patient.*;
+import br.com.feliperochasi.med.voll.api.domain.patient.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

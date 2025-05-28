@@ -1,6 +1,6 @@
-package br.com.feliperochasi.med.voll.api.patient;
+package br.com.feliperochasi.med.voll.api.domain.patient;
 
-import br.com.feliperochasi.med.voll.api.address.Address;
+import br.com.feliperochasi.med.voll.api.domain.address.Address;
 
 public record DetailsDataPatient(
         Long id,

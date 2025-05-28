@@ -1,6 +1,6 @@
-package br.com.feliperochasi.med.voll.api.medic;
+package br.com.feliperochasi.med.voll.api.domain.medic;
 
-import br.com.feliperochasi.med.voll.api.address.Address;
+import br.com.feliperochasi.med.voll.api.domain.address.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
