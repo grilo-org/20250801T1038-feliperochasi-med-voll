@@ -41,4 +41,18 @@ public class Patient {
     public void exclude() {
         this.active = false;
     }
+
+    public void update(UpdateDataPatient dataPatient) {
+        if(dataPatient.nome() != null) {
+            this.name = dataPatient.nome();
+        }
+
+        if(dataPatient.telefone() != null) {
+            this.phone = dataPatient.telefone();
+        }
+
+        if(dataPatient.endereco() != null) {
+            this.address.update(dataPatient.endereco());
+        }
+    }
 }

@@ -1,9 +1,6 @@
 package br.com.feliperochasi.med.voll.api.controller;
 
-import br.com.feliperochasi.med.voll.api.patient.ListDataPatient;
-import br.com.feliperochasi.med.voll.api.patient.Patient;
-import br.com.feliperochasi.med.voll.api.patient.PatientRepository;
-import br.com.feliperochasi.med.voll.api.patient.RegisterDataPatient;
+import br.com.feliperochasi.med.voll.api.patient.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,6 +25,13 @@ public class PatientController {
     @GetMapping
     public Page<ListDataPatient> listPatient(@PageableDefault(size = 10, sort = {"name"}) Pageable p) {
         return repository.findAllByActiveTrue(p).map(ListDataPatient::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void update(@RequestBody @Valid UpdateDataPatient updateDataPatient) {
+        var patient = repository.getReferenceById(updateDataPatient.id());
+        patient.update(updateDataPatient);
     }
 
     @DeleteMapping("/{id}")
