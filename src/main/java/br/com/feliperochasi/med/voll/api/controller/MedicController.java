@@ -24,7 +24,7 @@ public class MedicController {
 
     @GetMapping
     public Page<ListDataMedic> listMedics(@PageableDefault(size = 10, sort = {"name"}) Pageable p) {
-        return repository.findAll(p).map(ListDataMedic::new);
+        return repository.findAllByActiveTrue(p).map(ListDataMedic::new);
     }
 
     @PutMapping
@@ -37,6 +37,7 @@ public class MedicController {
     @DeleteMapping("/{id}")
     @Transactional
     public void delete(@PathVariable Long id) {
-        repository.deleteById(id);
+        var medic = repository.getReferenceById(id);
+        medic.delete();
     }
 }

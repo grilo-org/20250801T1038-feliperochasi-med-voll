@@ -28,6 +28,8 @@ public class Medic {
     @Embedded
     private Address address;
 
+    private Boolean active;
+
     public Medic(RegisterDataMedic data) {
         this.name = data.nome();
         this.email = data.email();
@@ -35,6 +37,7 @@ public class Medic {
         this.specialised = data.especialidade();
         this.address = new Address(data.endereco());
         this.phone = data.telefone();
+        this.active = true;
     }
 
     public void update(UpdateDataMedic dataMedic) {
@@ -50,5 +53,9 @@ public class Medic {
             this.address.update(dataMedic.endereco());
         }
 
+    }
+
+    public void delete() {
+        this.active = false;
     }
 }
