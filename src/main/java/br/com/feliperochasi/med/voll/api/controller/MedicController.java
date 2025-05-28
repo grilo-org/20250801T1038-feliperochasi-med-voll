@@ -51,4 +51,10 @@ public class MedicController {
         medic.delete();
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DetailsDataMedic> getMedic(@PathVariable Long id) {
+        var medic = repository.getReferenceById(id);
+        return ResponseEntity.ok(new DetailsDataMedic(medic));
+    }
 }
