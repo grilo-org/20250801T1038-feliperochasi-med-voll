@@ -2,6 +2,7 @@ package br.com.feliperochasi.med.voll.api.controller;
 
 import br.com.feliperochasi.med.voll.api.domain.user.AuthenticatorData;
 import br.com.feliperochasi.med.voll.api.domain.user.User;
+import br.com.feliperochasi.med.voll.api.infra.security.TokenDataJWT;
 import br.com.feliperochasi.med.voll.api.infra.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,12 @@ public class AuthenticatorController {
 
     @PostMapping
     public ResponseEntity login(@RequestBody @Valid AuthenticatorData data) {
-        var token = new UsernamePasswordAuthenticationToken(data.login(), data.senha());
-        var authentication = manager.authenticate(token);
+        var authenticationToken = new UsernamePasswordAuthenticationToken(data.login(), data.senha());
+        var authentication = manager.authenticate(authenticationToken);
 
-        return ResponseEntity.ok(tokenService.getToken((User) authentication.getPrincipal()));
+        var tokenJWT = tokenService.getToken((User) authentication.getPrincipal());
+
+        return ResponseEntity.ok(new TokenDataJWT(tokenJWT));
     }
 
 }
