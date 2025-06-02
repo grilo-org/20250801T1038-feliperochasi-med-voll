@@ -6,10 +6,10 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public record ScheduleConsultationData(
-        String idMedico,
+        Long idMedico,
 
         @NotNull
-        String idPaciente,
+        Long idPaciente,
 
         @NotNull
         @Future
