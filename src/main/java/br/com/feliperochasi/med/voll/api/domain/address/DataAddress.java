@@ -1,4 +1,4 @@
-package br.com.feliperochasi.med.voll.api.address;
+package br.com.feliperochasi.med.voll.api.domain.address;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

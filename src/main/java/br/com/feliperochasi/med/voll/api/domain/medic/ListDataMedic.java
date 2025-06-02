@@ -1,4 +1,4 @@
-package br.com.feliperochasi.med.voll.api.medic;
+package br.com.feliperochasi.med.voll.api.domain.medic;
 
 public record ListDataMedic(
         Long id,
