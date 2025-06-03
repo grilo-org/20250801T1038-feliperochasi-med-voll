@@ -14,7 +14,7 @@ public interface MedicRepository extends JpaRepository<Medic, Long> {
 
     @Query("""
             SELECT m FROM Medic m
-            WHERE m.active = 1 AND m.specialised = :specialised AND m.id not in(SELECT c.medic.id FROM Consultation WHERE c.date = :data) ORDER BY rand() LIMIT 1
+            WHERE m.active = true AND m.specialised = :specialised AND m.id not in(SELECT c.medic.id FROM Consultation WHERE c.date = :data) ORDER BY rand() LIMIT 1
             """)
     Medic chooseMedicBySpecialised(Specialised specialised, @NotNull @Future LocalDateTime data);
 }
