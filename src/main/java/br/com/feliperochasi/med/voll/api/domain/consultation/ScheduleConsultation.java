@@ -35,8 +35,14 @@ public class ScheduleConsultation {
     }
 
     private Medic chooseMedic(ScheduleConsultationData data) {
+        if(data.idMedico() != null) {
+            return medicRepository.getReferenceById(data.idMedico());
+        }
 
+        if(data.especialidade() == null) {
+            throw new ValidationIdException("Especialidade é obrigatoria quando medico nao for escolhido!");
+        }
 
-        return null;
+        return medicRepository.chooseMedicBySpecialised(data.especialidade(), data.data());
     }
 }

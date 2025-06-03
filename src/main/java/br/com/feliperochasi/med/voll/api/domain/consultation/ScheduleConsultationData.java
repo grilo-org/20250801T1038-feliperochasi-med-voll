@@ -1,5 +1,6 @@
 package br.com.feliperochasi.med.voll.api.domain.consultation;
 
+import br.com.feliperochasi.med.voll.api.domain.medic.Specialised;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 
@@ -13,6 +14,8 @@ public record ScheduleConsultationData(
 
         @NotNull
         @Future
-        LocalDateTime data
+        LocalDateTime data,
+
+        Specialised especialidade
 ) {
 }
