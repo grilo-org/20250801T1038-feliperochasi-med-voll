@@ -1,5 +1,6 @@
 package br.com.feliperochasi.med.voll.api.infra.exception;
 
+import br.com.feliperochasi.med.voll.api.domain.ValidationIdException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,11 @@ public class ErrorsHandler {
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity errorHandlerAcessoNegado() {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado");
+    }
+
+    @ExceptionHandler(ValidationIdException.class)
+    public ResponseEntity errorHandlerValidators(ValidationIdException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
