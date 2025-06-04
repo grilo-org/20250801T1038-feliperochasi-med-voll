@@ -37,6 +37,9 @@ public class ScheduleConsultation {
         validators.forEach(v -> v.valid(data));
 
         var medic = chooseMedic(data);
+        if (medic == null) {
+            throw  new ValidationIdException("Nao existe medico disponivel nesta data!");
+        }
         var patient = patientRepository.getReferenceById(data.idPaciente());
         var consultation = new Consultation(null, medic, patient, data.data());
         consultationRepository.save(consultation);
