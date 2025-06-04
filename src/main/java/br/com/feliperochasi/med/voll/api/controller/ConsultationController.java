@@ -22,7 +22,7 @@ public class ConsultationController {
     @PostMapping
     @Transactional
     public ResponseEntity schedule(@RequestBody @Valid ScheduleConsultationData data) {
-        service.scheduler(data);
-        return ResponseEntity.ok(new DetailsConsultationData(null, null, null, null));
+        var dto = service.scheduler(data);
+        return ResponseEntity.ok(dto);
     }
 }

@@ -25,7 +25,7 @@ public class ScheduleConsultation {
     @Autowired
     private List<SchedulingConsultationValidator> validators;
 
-    public void scheduler(ScheduleConsultationData data) {
+    public DetailsConsultationData scheduler(ScheduleConsultationData data) {
         if (!patientRepository.existsById(data.idPaciente())) {
             throw new ValidationIdException("ID do paciente informado nao existe!");
         }
@@ -40,6 +40,7 @@ public class ScheduleConsultation {
         var patient = patientRepository.getReferenceById(data.idPaciente());
         var consultation = new Consultation(null, medic, patient, data.data());
         consultationRepository.save(consultation);
+        return new DetailsConsultationData(consultation);
     }
 
     private Medic chooseMedic(ScheduleConsultationData data) {
