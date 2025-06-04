@@ -2,10 +2,12 @@ package br.com.feliperochasi.med.voll.api.domain.consultation.validations;
 
 import br.com.feliperochasi.med.voll.api.domain.ValidationIdException;
 import br.com.feliperochasi.med.voll.api.domain.consultation.ScheduleConsultationData;
+import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
 
-public class OpeningHoursValidator {
+@Component
+public class OpeningHoursValidator implements SchedulingConsultationValidator {
 
     public void valid(ScheduleConsultationData data) {
         var consultationData = data.data();

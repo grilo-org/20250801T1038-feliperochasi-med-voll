@@ -1,11 +1,14 @@
 package br.com.feliperochasi.med.voll.api.domain.consultation;
 
 import br.com.feliperochasi.med.voll.api.domain.ValidationIdException;
+import br.com.feliperochasi.med.voll.api.domain.consultation.validations.SchedulingConsultationValidator;
 import br.com.feliperochasi.med.voll.api.domain.medic.Medic;
 import br.com.feliperochasi.med.voll.api.domain.medic.MedicRepository;
 import br.com.feliperochasi.med.voll.api.domain.patient.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ScheduleConsultation {
@@ -19,6 +22,9 @@ public class ScheduleConsultation {
     @Autowired
     private PatientRepository patientRepository;
 
+    @Autowired
+    private List<SchedulingConsultationValidator> validators;
+
     public void scheduler(ScheduleConsultationData data) {
         if (!patientRepository.existsById(data.idPaciente())) {
             throw new ValidationIdException("ID do paciente informado nao existe!");
@@ -27,6 +33,8 @@ public class ScheduleConsultation {
         if (data.idMedico() != null && !medicRepository.existsById(data.idMedico())) {
             throw  new ValidationIdException("ID do medico informado nao existe!");
         }
+
+        validators.forEach(v -> v.valid(data));
 
         var medic = chooseMedic(data);
         var patient = patientRepository.getReferenceById(data.idPaciente());

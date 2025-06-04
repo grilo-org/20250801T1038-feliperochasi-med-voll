@@ -3,9 +3,13 @@ package br.com.feliperochasi.med.voll.api.domain.consultation.validations;
 import br.com.feliperochasi.med.voll.api.domain.ValidationIdException;
 import br.com.feliperochasi.med.voll.api.domain.consultation.ConsultationRepository;
 import br.com.feliperochasi.med.voll.api.domain.consultation.ScheduleConsultationData;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class AnotherConsultationPatientValidator {
+@Component
+public class AnotherConsultationPatientValidator implements SchedulingConsultationValidator {
 
+    @Autowired
     private ConsultationRepository repository;
 
     public void valid(ScheduleConsultationData data) {
