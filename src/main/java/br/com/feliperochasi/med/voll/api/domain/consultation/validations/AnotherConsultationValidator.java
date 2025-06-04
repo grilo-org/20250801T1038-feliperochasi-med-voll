@@ -11,7 +11,7 @@ public class AnotherConsultationValidator implements SchedulingConsultationValid
     private ConsultationRepository repository;
 
     public void valid(ScheduleConsultationData data) {
-        var medicHaveConsultation = repository.existsByMedicIdAndDate(data.idMedico(), data.data());
+        var medicHaveConsultation = repository.existsByMedicIdAndDateTime(data.idMedico(), data.data());
         if (medicHaveConsultation) {
             throw new ValidationIdException("Medico ja possui outra consulta agendada nesse mesmo horario");
         }
