@@ -6,6 +6,6 @@ public record CancellationConsultationData(
         @NotNull
         Long idConsulta,
         @NotNull
-        String motivo
+        ReasonCancel motivo
 ) {
 }
