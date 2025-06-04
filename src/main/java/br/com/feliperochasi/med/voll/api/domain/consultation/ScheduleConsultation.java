@@ -58,7 +58,7 @@ public class ScheduleConsultation {
 
         cancelConsultationValidators.forEach(v -> v.valid(data));
         var consultation = consultationRepository.getReferenceById(data.idConsulta());
-        consultation.delete();
+        consultation.delete(data.motivo());
     }
 
     private Medic chooseMedic(ScheduleConsultationData data) {
