@@ -31,4 +31,13 @@ public class Consultation {
     private Patient patient;
 
     private LocalDateTime date;
+
+    private Boolean active;
+
+    @Enumerated(EnumType.STRING)
+    private ReasonCancel reasonCancel;
+
+    public void delete() {
+        this.active = false;
+    }
 }
