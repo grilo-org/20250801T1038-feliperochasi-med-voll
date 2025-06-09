@@ -37,6 +37,13 @@ public class Consultation {
     @Enumerated(EnumType.STRING)
     private ReasonCancel reasonCancel;
 
+    public Consultation(Long id, Medic medic, Patient patient, LocalDateTime date) {
+        this.medic = medic;
+        this.patient = patient;
+        this.date = date;
+        this.active = true;
+    }
+
     public void delete(ReasonCancel cancel) {
         this.active = false;
         this.reasonCancel = cancel;
