@@ -1,5 +1,6 @@
 package br.com.feliperochasi.med.voll.api.infra.exception;
 
+import br.com.feliperochasi.med.voll.api.domain.ValidationIdException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 @RestControllerAdvice
 public class ErrorsHandler {
@@ -39,6 +41,16 @@ public class ErrorsHandler {
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity errorHandlerAcessoNegado() {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado");
+    }
+
+    @ExceptionHandler(ValidationIdException.class)
+    public ResponseEntity errorHandlerValidators(ValidationIdException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity errorNotBodyInRequest() {
+        return ResponseEntity.badRequest().body("Corpo da requisicao invalido");
     }
 
     @ExceptionHandler(Exception.class)
