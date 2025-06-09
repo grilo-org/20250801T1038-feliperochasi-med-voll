@@ -12,6 +12,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 @RestControllerAdvice
 public class ErrorsHandler {
@@ -45,6 +46,11 @@ public class ErrorsHandler {
     @ExceptionHandler(ValidationIdException.class)
     public ResponseEntity errorHandlerValidators(ValidationIdException ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity errorNotBodyInRequest() {
+        return ResponseEntity.badRequest().body("Corpo da requisicao invalido");
     }
 
     @ExceptionHandler(Exception.class)
